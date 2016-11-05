@@ -38,6 +38,7 @@ public class ModuleTickets
     public void load(FEModuleInitEvent e)
     {
         FECommandManager.registerCommand(new CommandTicket());
+        FECommandManager.registerCommand(new CommandPoll());
         FMLCommonHandler.instance().bus().register(this);
         ForgeEssentials.getConfigManager().registerLoader("Tickets", new ConfigTickets());
     }
@@ -51,6 +52,8 @@ public class ModuleTickets
 
         APIRegistry.perms.registerPermission(PERMBASE + ".tp", PermissionLevel.TRUE);
         APIRegistry.perms.registerPermission(PERMBASE + ".admin", PermissionLevel.OP);
+
+        APIRegistry.perms.registerPermission(PERMBASE + ".poll.admin", PermissionLevel.OP);
     }
 
     @SubscribeEvent
@@ -76,6 +79,8 @@ public class ModuleTickets
         ticketList.clear();
         for (Ticket ticket : loadedTickets.values())
             ticketList.add(ticket);
+
+        Poll.currentPoll = DataManager.getInstance().load(Poll.class, "current");
     }
 
     public static void saveAll()
@@ -83,6 +88,10 @@ public class ModuleTickets
         for (Ticket ticket : ticketList)
         {
             DataManager.getInstance().save(ticket, Integer.toString(ticket.id));
+        }
+        if (Poll.currentPoll != null)
+        {
+            DataManager.getInstance().save(Poll.currentPoll, "current");
         }
     }
 

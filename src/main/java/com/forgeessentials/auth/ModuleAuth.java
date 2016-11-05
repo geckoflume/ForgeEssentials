@@ -18,10 +18,12 @@ import com.forgeessentials.core.misc.FECommandManager;
 import com.forgeessentials.core.misc.TaskRegistry;
 import com.forgeessentials.core.moduleLauncher.FEModule;
 import com.forgeessentials.core.moduleLauncher.FEModule.Preconditions;
+import com.forgeessentials.core.moduleLauncher.ModuleLauncher;
 import com.forgeessentials.core.moduleLauncher.config.ConfigLoaderBase;
 import com.forgeessentials.util.ServerUtil;
 import com.forgeessentials.util.events.FEModuleEvent.FEModuleInitEvent;
 import com.forgeessentials.util.events.FEModuleEvent.FEModuleServerInitEvent;
+import com.forgeessentials.util.output.ChatOutputHandler;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -84,8 +86,15 @@ public class ModuleAuth extends ConfigLoaderBase
             handler = new AuthEventHandler();
             handler.enable(true);
         }
-        APIRegistry.scripts.addScriptType(SCRIPT_KEY_SUCCESS);
-        APIRegistry.scripts.addScriptType(SCRIPT_KEY_FAILURE);
+        if (ModuleLauncher.getModuleList().contains("JScripting"))
+        {
+            APIRegistry.scripts.addScriptType(SCRIPT_KEY_SUCCESS);
+            APIRegistry.scripts.addScriptType(SCRIPT_KEY_FAILURE);
+        }
+        else
+        {
+            ChatOutputHandler.warning("Scripting module is disabled. Will not be able to run auth login scripts.");
+        }
     }
 
     public static boolean isEnabled()
