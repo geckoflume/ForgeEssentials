@@ -26,7 +26,7 @@ public class ChatConfig extends ConfigLoaderBase
 
     private static final String DEFAULT_WELCOME_MESSAGE = "&9@player &7vient de se connecter sur le serveur pour la premi\u00E8re fois !";
 
-    private static final String[] DEFAULT_LOGIN_MESSAGE = new String[] { "Bienvenue, &9@player.", "&7This server is running ForgeEssentials" };
+    private static final String[] DEFAULT_LOGIN_MESSAGE = new String[] { "Bienvenue, &9@player.", "&7Ce serveur ex\u00E9cute ForgeEssentials" };
 
     public static String gamemodeCreative;
 

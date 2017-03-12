@@ -103,13 +103,13 @@ public class CommandAuth extends ForgeEssentialsCommandBase
                 {
                     // login worked
                     ModuleAuth.authenticate(sender.getPersistentID());
-                    ChatOutputHandler.chatConfirmation(sender, "Connexion r\u00E9ussie !");
+                    ChatOutputHandler.chatConfirmation(sender, "Connexion effectu\u00E9e !");
                     APIRegistry.getFEEventBus().post(new PlayerAuthLoginEvent.Success(sender, Source.COMMAND));
                 }
                 else
                 {
                     APIRegistry.getFEEventBus().post(new PlayerAuthLoginEvent.Failure(sender));
-                    throw new TranslatedCommandException("La connexion a \u00E9chou\u00E9.");
+                    throw new TranslatedCommandException("Mauvais mot de passe !");
                 }
 
                 return;
@@ -125,7 +125,7 @@ public class CommandAuth extends ForgeEssentialsCommandBase
                     throw new TranslatedCommandException("Les inscriptions ont \u00E9t\u00E9 d\u00E9sactiv\u00E9es.");
 
                 PasswordManager.setPassword(sender.getPersistentID(), args[1]);
-                ChatOutputHandler.chatConfirmation(sender, "Inscrption r\u00E9ussie !");
+                ChatOutputHandler.chatConfirmation(sender, "Inscription effectu\u00E9e !");
                 return;
             }
 

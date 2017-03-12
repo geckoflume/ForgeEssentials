@@ -69,6 +69,8 @@ public class ModuleAuth extends ConfigLoaderBase
     public void load(FEModuleInitEvent e)
     {
         FECommandManager.registerCommand(new CommandAuth());
+        FECommandManager.registerCommand(new CommandLogin());
+        FECommandManager.registerCommand(new CommandRegister());
         FECommandManager.registerCommand(new CommandVIP());
         NetworkUtils.registerMessage(new AuthNetHandler(), Packet6AuthLogin.class, 6, Side.SERVER);
     }
@@ -162,6 +164,8 @@ public class ModuleAuth extends ConfigLoaderBase
     public static boolean isGuestCommand(ICommand command)
     {
         return command instanceof CommandAuth || //
+                command instanceof CommandLogin ||
+                command instanceof CommandRegister ||
                 command instanceof CommandHelp;
     }
 
