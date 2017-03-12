@@ -13,7 +13,7 @@ public class InventoryGrave extends InventoryBasic
 
     public InventoryGrave(Grave grave)
     {
-        super(UserIdent.get(grave.owner).getUsername() + "'s grave.", false, Math.min(36, ((grave.inventory.size() - 1) / 9 + 1) * 9));
+        super("Tombe de " + UserIdent.get(grave.owner).getUsername() + ".", false, Math.min(36, ((grave.inventory.size() - 1) / 9 + 1) * 9));
         this.grave = grave;
     }
 

@@ -24,7 +24,7 @@ public class CommandBackup extends ParserCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/febackup [dim]: Do a backup now";
+        return "/febackup [dim]: Faire une sauvegarde de la dimension dim";
     }
 
     @Override
@@ -50,7 +50,7 @@ public class CommandBackup extends ParserCommandBase
     {
         if (arguments.isEmpty())
         {
-            arguments.confirm("Starting forced backup...");
+            arguments.confirm("D\u00E9but de la sauvegarde...");
             ModuleBackup.backupAll();
             return;
         }

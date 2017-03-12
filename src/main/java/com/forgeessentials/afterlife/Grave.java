@@ -200,7 +200,7 @@ public class Grave implements Loadable
     {
         if (!canOpen(player))
         {
-            ChatOutputHandler.chatWarning(player, "This grave is still under divine protection.");
+            ChatOutputHandler.chatWarning(player, "Cette tombe est toujours sous protection divine.");
             return;
         }
 

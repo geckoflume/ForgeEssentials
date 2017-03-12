@@ -27,7 +27,7 @@ public class CommandHelp extends IrcCommandParser
     @Override
     public String getCommandHelp()
     {
-        return "Show help";
+        return "Affiche l'aide";
     }
 
     @Override
@@ -39,7 +39,7 @@ public class CommandHelp extends IrcCommandParser
     @Override
     public void parse(CommandParserArgs arguments)
     {
-        arguments.confirm("List of commands:");
+        arguments.confirm("Liste des commandes :");
         for (Entry<String, IrcCommand> command : IrcHandler.getInstance().commands.entrySet())
         {
             arguments.confirm(COMMAND_CHAR + command.getKey() + " " + command.getValue().getCommandUsage() + ": " + command.getValue().getCommandHelp());

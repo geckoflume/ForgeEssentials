@@ -26,7 +26,7 @@ public class CommandListPlayers extends IrcCommandParser
     @Override
     public String getCommandHelp()
     {
-        return "Show list of online players";
+        return "Affiche la liste des joueurs en ligne";
     }
 
     @Override
@@ -38,7 +38,7 @@ public class CommandListPlayers extends IrcCommandParser
     @Override
     public void parse(CommandParserArgs arguments)
     {
-        arguments.confirm("List of players:");
+        arguments.confirm("Liste des joueurs :");
         for (String username : MinecraftServer.getServer().getConfigurationManager().getAllUsernames())
             arguments.confirm(" - " + username);
     }

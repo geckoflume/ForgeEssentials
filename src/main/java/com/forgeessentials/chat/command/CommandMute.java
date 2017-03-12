@@ -27,7 +27,7 @@ public class CommandMute extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/mute <player>: Mutes the specified player.";
+        return "/mute <joueur>: Rend le joueur muet.";
     }
 
     @Override
@@ -55,11 +55,11 @@ public class CommandMute extends ForgeEssentialsCommandBase
         {
             EntityPlayerMP receiver = UserIdent.getPlayerByMatchOrUsername(sender, args[0]);
             if (receiver == null)
-                throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+                throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
 
             PlayerUtil.getPersistedTag(receiver, true).setBoolean("mute", true);
-            ChatOutputHandler.chatError(sender, Translator.format("You muted %s.", args[0]));
-            ChatOutputHandler.chatError(receiver, Translator.format("You were muted by %s.", sender.getCommandSenderName()));
+            ChatOutputHandler.chatError(sender, Translator.format("Vous avez rendu muet %s.", args[0]));
+            ChatOutputHandler.chatError(receiver, Translator.format("Vous avez \u00E9t\u00E9 r\u00E9duit au silence par %s.", sender.getCommandSenderName()));
         }
     }
 

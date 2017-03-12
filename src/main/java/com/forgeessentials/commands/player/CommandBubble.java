@@ -99,12 +99,12 @@ public class CommandBubble extends ForgeEssentialsCommandBase
         if (toggleOn)
         {
             APIRegistry.perms.getServerZone().groupIncludeAdd(Zone.GROUP_DEFAULT, BUBBLE_GROUP);
-            ChatOutputHandler.chatConfirmation(sender, "Activated bubble. Players are now unable to interact with the world.");
+            ChatOutputHandler.chatConfirmation(sender, "Bubble activ\u00E9. Les joueurs ne peuvenet maintenant plus int\u00E9ragir avec le monde.");
         }
         else
         {
             APIRegistry.perms.getServerZone().groupIncludeRemove(Zone.GROUP_DEFAULT, BUBBLE_GROUP);
-            ChatOutputHandler.chatConfirmation(sender, "Deactivated bubble");
+            ChatOutputHandler.chatConfirmation(sender, "Bubble d\u00E9sactiv\u00E9");
         }
     }
 

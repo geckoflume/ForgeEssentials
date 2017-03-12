@@ -78,7 +78,7 @@ public class Mailer extends ServerEventHandler
         Set<UserIdent> senders = new HashSet<>();
         for (Mail mail : mailBag.mails)
             senders.add(mail.sender);
-        String message = Translator.format("You hav unread mails from %s. Use /mail to read.", UserIdent.join(senders, ", ", " and "));
+        String message = Translator.format("Vous avez du courrier non lu de %s. Faites /mail pour le lire.", UserIdent.join(senders, ", ", " and "));
         ChatOutputHandler.chatConfirmation(event.player, message);
     }
 
@@ -120,7 +120,7 @@ public class Mailer extends ServerEventHandler
         saveMails(recipent, mailBag);
         if (recipent.hasPlayer())
             ChatOutputHandler.chatNotification(recipent.getPlayer(),
-                    Translator.format("You have a new mail from %s", sender == null ? "the server" : sender.getUsernameOrUuid()));
+                    Translator.format("Vous avez un nouveau courrier de %s", sender == null ? "Serveur" : sender.getUsernameOrUuid()));
     }
 
 }

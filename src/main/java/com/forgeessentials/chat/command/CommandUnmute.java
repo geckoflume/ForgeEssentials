@@ -27,7 +27,7 @@ public class CommandUnmute extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/unmute <player>: Unmutes the specified player.";
+        return "/unmute <joueur>: Rend la parole au joueur sp\u00E9cifi\u00E9.";
     }
 
     @Override
@@ -55,11 +55,11 @@ public class CommandUnmute extends ForgeEssentialsCommandBase
         {
             EntityPlayerMP receiver = UserIdent.getPlayerByMatchOrUsername(sender, args[0]);
             if (receiver == null)
-                throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+                throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
 
             PlayerUtil.getPersistedTag(receiver, false).removeTag("mute");
-            ChatOutputHandler.chatError(sender, Translator.format("You unmuted %s.", args[0]));
-            ChatOutputHandler.chatError(receiver, Translator.format("You were unmuted by %s.", sender.getCommandSenderName()));
+            ChatOutputHandler.chatError(sender, Translator.format("Vous avez rendu la parole \u00E0 %s.", args[0]));
+            ChatOutputHandler.chatError(receiver, Translator.format("%s vous a rendu la parole.", sender.getCommandSenderName()));
         }
     }
 

@@ -37,11 +37,11 @@ public class CommandHeal extends ForgeEssentialsCommandBase
     {
         if (sender instanceof EntityPlayer)
         {
-            return "/heal <player> Heal yourself or other players (if you have permission).";
+            return "/heal [joueur] Soigne vous ou un autre joueur";
         }
         else
         {
-            return "/heal <player> Heal a player.";
+            return "/heal <joueur> Soigne un joueur";
         }
     }
 
@@ -85,7 +85,7 @@ public class CommandHeal extends ForgeEssentialsCommandBase
             }
             else
             {
-                ChatOutputHandler.chatError(sender, String.format("Player %s does not exist, or is not online.", args[0]));
+                ChatOutputHandler.chatError(sender, String.format("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]));
             }
         }
         else
@@ -105,7 +105,7 @@ public class CommandHeal extends ForgeEssentialsCommandBase
                 heal(player);
             }
             else
-                throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+                throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
         }
         else
             throw new TranslatedCommandException(getCommandUsage(sender));
@@ -117,7 +117,7 @@ public class CommandHeal extends ForgeEssentialsCommandBase
         target.heal(toHealBy);
         target.extinguish();
         target.getFoodStats().addStats(20, 1.0F);
-        ChatOutputHandler.chatConfirmation(target, "You were healed.");
+        ChatOutputHandler.chatConfirmation(target, "Vous avez \u00E9t\u00E9 soign\u00E9.");
     }
 
     @Override

@@ -171,7 +171,7 @@ public class ModuleAuth extends ConfigLoaderBase
     private static final String CFG_DESC_salt = "The salt to be used when hashing passwords";
     private static final String CFG_DESC_checkInterval = "Interval to check Vanilla Auth service in minutes.";
     private static final String CFG_DESC_canMoveWithoutLogin = "Allow players not registered/not logged in with the authentication service to move in the world.";
-    private static final String CFG_DESC_kickMsg = "Kick messages for banned/unwhitelisted players or when the server is full (not counting VIP slots";
+    private static final String CFG_DESC_kickMsg = "Kick messages for banned/unwhitelisted players or when the server is full (not counting VIP slots)";
     private static final String CFG_DESC_authlists = "Alternative VIP/max players implementation. Make sure vipslots and offset added together is less than the amount of players specified in server.properties.";
     private static final String CFG_DESC_offset = "If you need to be able to have less than the amount of players specified in server.properties logged into your server, use this.";
     private static final String CFG_DESC_autologin = "Allow players with the FEClient and the correct keys to automatically identify themselves with the auth engine.";
@@ -192,8 +192,8 @@ public class ModuleAuth extends ConfigLoaderBase
         AuthEventHandler.vipSlots = config.get(CONFIG_CATEGORY_LISTS, "vipslots", 0, "Amount of slots reserved for VIP players.").getInt();
 
         config.addCustomCategoryComment(CONFIG_CATEGORY_LISTS + ".kickmsg", CFG_DESC_kickMsg);
-        AuthEventHandler.playerBannedMessage = config.get(CONFIG_CATEGORY_LISTS + ".kick", "bannedmsg", "You have been banned from this server.").getString();
-        AuthEventHandler.nonVipKickMessage = config.get(CONFIG_CATEGORY_LISTS + ".kick", "notVIPmsg", "This server is full, and you are not a VIP.")
+        AuthEventHandler.playerBannedMessage = config.get(CONFIG_CATEGORY_LISTS + ".kick", "bannedmsg", "Vous avez \u00E9t\u00E9 banni de ce serveur.").getString();
+        AuthEventHandler.nonVipKickMessage = config.get(CONFIG_CATEGORY_LISTS + ".kick", "notVIPmsg", "Ce serveur est plein, et tu n'as pas d'acc\u00E8s VIP.")
                 .getString();
         allowAutoLogin = config.get(CONFIG_CATEGORY, "allowAutoLogin", false, CFG_DESC_autologin).getBoolean();
 

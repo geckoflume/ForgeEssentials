@@ -30,7 +30,7 @@ public class CommandReply implements IrcCommand
     @Override
     public String getCommandHelp()
     {
-        return "Reply to the last private message";
+        return "R\u00E9pondre \u00E0 votre dernier message priv\u00E9";
     }
 
     @Override

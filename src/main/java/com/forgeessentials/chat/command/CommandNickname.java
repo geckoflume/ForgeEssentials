@@ -34,7 +34,7 @@ public class CommandNickname extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/nick <username> [nickname|del> Edit a player's nickname.";
+        return "/nick <username> [nickname|del] Modifie le surnom d'un joueur.";
     }
 
     @Override
@@ -69,34 +69,34 @@ public class CommandNickname extends ForgeEssentialsCommandBase
             if (args[0].equalsIgnoreCase("del"))
             {
                 ModuleChat.setPlayerNickname(sender, null);
-                ChatOutputHandler.chatConfirmation(sender, "Nickname removed.");
+                ChatOutputHandler.chatConfirmation(sender, "Vous n'avez plus de surnom.");
             }
             else
             {
                 ModuleChat.setPlayerNickname(sender, args[0]);
-                ChatOutputHandler.chatConfirmation(sender, "Nickname set to " + args[0]);
+                ChatOutputHandler.chatConfirmation(sender, "Votre surnom est maintenant " + args[0]);
             }
         }
         else if (args.length == 2)
         {
             if (!PermissionManager.checkPermission(sender, PERM_OTHERS))
-                throw new TranslatedCommandException("You don't have permissions for that.");
+                throw new TranslatedCommandException("Vous n'avez pas la permission pour faire cela !");
 
             EntityPlayerMP player = getPlayer(sender, args[0]);
             if (args[1].equalsIgnoreCase("del"))
             {
                 ModuleChat.setPlayerNickname(player, null);
-                ChatOutputHandler.chatConfirmation(sender, Translator.format("Removed nickname of %s", args[0]));
+                ChatOutputHandler.chatConfirmation(sender, Translator.format("Vous avez supprim\u00E9 le surnom de %s", args[0]));
             }
             else
             {
                 ModuleChat.setPlayerNickname(player, args[1]);
-                ChatOutputHandler.chatConfirmation(sender, Translator.format("Set nickname of %s to %s", args[0], args[1]));
+                ChatOutputHandler.chatConfirmation(sender, Translator.format("Le surnom de %s est maintenant %s", args[0], args[1]));
             }
         }
         else
         {
-            throw new TranslatedCommandException("Improper syntax. Please try this instead: <username> [nickname|del]");
+            throw new TranslatedCommandException("Syntaxe invalide ! Essayez plut\u00F4t ceci : <username> [nickname|del]");
         }
     }
 
@@ -109,17 +109,17 @@ public class CommandNickname extends ForgeEssentialsCommandBase
             if (args[1].equalsIgnoreCase("del"))
             {
                 ModuleChat.setPlayerNickname(player, null);
-                ChatOutputHandler.chatConfirmation(sender, Translator.format("Removed nickname of %s", args[0]));
+                ChatOutputHandler.chatConfirmation(sender, Translator.format("Le surnom de %s a \u00E9t\u00E9 supprim\u00E9", args[0]));
             }
             else
             {
                 ModuleChat.setPlayerNickname(player, args[1]);
-                ChatOutputHandler.chatConfirmation(sender, Translator.format("Set nickname of %s to %s", args[0], args[1]));
+                ChatOutputHandler.chatConfirmation(sender, Translator.format("Le surnom de %s est maintenant %s", args[0], args[1]));
             }
         }
         else
         {
-            throw new TranslatedCommandException("Improper syntax. Please try this instead: <username> [nickname|del]");
+            throw new TranslatedCommandException("Syntaxe invalide ! Essayez plut\u00F4t ceci : <username> [nickname|del]");
         }
     }
 

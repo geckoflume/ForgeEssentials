@@ -38,7 +38,7 @@ public class CommandDechant extends ParserCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/dechant <name>: Removes an enchantment from the current item";
+        return "/dechant <nom>: Enl\u00E8ve un enchantement de l'item tenu";
     }
 
     @Override
@@ -64,7 +64,7 @@ public class CommandDechant extends ParserCommandBase
     {
         ItemStack stack = arguments.senderPlayer.getCurrentEquippedItem();
         if (stack == null)
-            throw new TranslatedCommandException("You are not holding a valid item");
+            throw new TranslatedCommandException("Vous ne tenez pas un item valide");
         @SuppressWarnings("unchecked")
         Map<Integer, Integer> enchantments = EnchantmentHelper.getEnchantments(stack);
 
@@ -82,7 +82,7 @@ public class CommandDechant extends ParserCommandBase
         {
             if (arguments.isTabCompletion)
                 return;
-            arguments.confirm("Possible dechantments: %s", StringUtils.join(validEnchantmentNames, ", "));
+            arguments.confirm("D\u00E9senchantements possibles : %s", StringUtils.join(validEnchantmentNames, ", "));
             return;
         }
 
@@ -92,7 +92,7 @@ public class CommandDechant extends ParserCommandBase
             String name = arguments.remove();
             Enchantment enchantment = validEnchantments.get(name.toLowerCase());
             if (enchantment == null)
-                throw new TranslatedCommandException("Invalid enchantment name %s!", name);
+                throw new TranslatedCommandException("Nom d'enchantement %s invalide !", name);
             enchantments.remove(enchantment.effectId);
         }
         EnchantmentHelper.setEnchantments(enchantments, stack);

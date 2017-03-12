@@ -41,7 +41,7 @@ public class CommandInventorySee extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/invsee See a player's inventory.";
+        return "/invsee Voir l'inventaire d'un joueur";
     }
 
     @Override
@@ -66,7 +66,7 @@ public class CommandInventorySee extends ForgeEssentialsCommandBase
     public void processCommandPlayer(EntityPlayerMP sender, String[] args)
     {
         if (args[0] == null)
-            throw new TranslatedCommandException("You need to specify a player!");
+            throw new TranslatedCommandException("Vous devez pr\u00E9ciser un joueur !");
 
         if (!FMLCommonHandler.instance().getEffectiveSide().isServer())
         {
@@ -75,7 +75,7 @@ public class CommandInventorySee extends ForgeEssentialsCommandBase
         EntityPlayerMP player = sender;
         EntityPlayerMP victim = UserIdent.getPlayerByMatchOrUsername(sender, args[0]);
         if (victim == null)
-            throw new TranslatedCommandException("Player %s not found.", args[0]);
+            throw new TranslatedCommandException("Joueur %s introuvable.", args[0]);
 
         if (player.openContainer != player.inventoryContainer)
         {

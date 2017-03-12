@@ -26,7 +26,7 @@ public class CommandFly extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender p_71518_1_)
     {
-        return "/fly [true|false] Toggle flight mode.";
+        return "/fly [true|false] Active le fly mode";
     }
 
     @Override
@@ -66,7 +66,7 @@ public class CommandFly extends ForgeEssentialsCommandBase
         if (!player.capabilities.allowFlying)
             WorldUtil.placeInWorld(player);
         player.sendPlayerAbilities();
-        ChatOutputHandler.chatNotification(player, "Flying " + (player.capabilities.allowFlying ? "enabled" : "disabled"));
+        ChatOutputHandler.chatNotification(player, "Flying " + (player.capabilities.allowFlying ? "activ\u00E9" : "d\u00E9sactiv\u00E9"));
     }
 
 }

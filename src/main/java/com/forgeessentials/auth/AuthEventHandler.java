@@ -48,7 +48,7 @@ public class AuthEventHandler extends ServerEventHandler
     public AuthEventHandler()
     {
         super();
-        LoggingHandler.felog.info("FEauth initialized. Enabled: " + ModuleAuth.isEnabled());
+        LoggingHandler.felog.info("FEauth initialis\u00E9. Activ\u00E9 : " + ModuleAuth.isEnabled());
     }
 
     protected void enable(boolean status)
@@ -78,7 +78,7 @@ public class AuthEventHandler extends ServerEventHandler
         if (!ModuleAuth.isAuthenticated(event.entityPlayer))
         {
             event.setCanceled(true);
-            ChatOutputHandler.chatError(event.entityPlayer, "Login required. Try /auth help.");
+            ChatOutputHandler.chatError(event.entityPlayer, "Veuillez vous connecter avec /auth login motdepasse");
         }
     }
 
@@ -90,7 +90,7 @@ public class AuthEventHandler extends ServerEventHandler
         if (!ModuleAuth.isAuthenticated(event.player))
         {
             event.setCanceled(true);
-            ChatOutputHandler.chatError(event.player, "Login required. Try /auth help.");
+            ChatOutputHandler.chatError(event.player, "Veuillez vous connecter avec /auth login motdepasse");
         }
     }
 
@@ -103,7 +103,7 @@ public class AuthEventHandler extends ServerEventHandler
         if (!ModuleAuth.isAuthenticated(player) && !ModuleAuth.isGuestCommand(event.command))
         {
             event.setCanceled(true);
-            ChatOutputHandler.chatError(player, "Login required. Try /auth help.");
+            ChatOutputHandler.chatError(player, "Veuillez vous connecter avec /auth login motdepasse");
         }
     }
 
@@ -115,7 +115,7 @@ public class AuthEventHandler extends ServerEventHandler
         if (!ModuleAuth.isAuthenticated(event.entityPlayer))
         {
             event.setCanceled(true);
-            ChatOutputHandler.chatError(event.entityPlayer, "Login required. Try /auth help.");
+            ChatOutputHandler.chatError(event.entityPlayer, "Veuillez vous connecter avec /auth login motdepasse");
         }
     }
 
@@ -127,7 +127,7 @@ public class AuthEventHandler extends ServerEventHandler
         if (!ModuleAuth.isAuthenticated(event.entityPlayer))
         {
             event.setCanceled(true);
-            ChatOutputHandler.chatError(event.entityPlayer, "Login required. Try /auth help.");
+            ChatOutputHandler.chatError(event.entityPlayer, "Veuillez vous connecter avec /auth login motdepasse");
         }
     }
 
@@ -139,7 +139,7 @@ public class AuthEventHandler extends ServerEventHandler
         if (!ModuleAuth.isAuthenticated(event.player))
         {
             event.setCanceled(true);
-            ChatOutputHandler.chatError(event.player, "Login required. Try /auth help.");
+            ChatOutputHandler.chatError(event.player, "Veuillez vous connecter avec /auth login motdepasse");
         }
     }
 
@@ -150,7 +150,7 @@ public class AuthEventHandler extends ServerEventHandler
             return;
         if (!ModuleAuth.isAuthenticated(event.player))
         {
-            ChatOutputHandler.chatError(event.player, "Login required. Try /auth help.");
+            ChatOutputHandler.chatError(event.player, "Veuillez vous connecter avec /auth login motdepasse");
             // add the item back to the inventory
             ItemStack stack = event.entityItem.getEntityItem();
             event.player.inventory.addItemStackToInventory(stack);
@@ -166,7 +166,7 @@ public class AuthEventHandler extends ServerEventHandler
         if (!ModuleAuth.isAuthenticated(event.entityPlayer))
         {
             event.setCanceled(true);
-            ChatOutputHandler.chatError(event.entityPlayer, "Login required. Try /auth help.");
+            ChatOutputHandler.chatError(event.entityPlayer, "Veuillez vous connecter avec /auth login motdepasse");
         }
     }
 
@@ -179,7 +179,7 @@ public class AuthEventHandler extends ServerEventHandler
         if (!ModuleAuth.isAuthenticated(player))
         {
             event.setCanceled(true);
-            ChatOutputHandler.chatError(player, "Login required. Try /auth help.");
+            ChatOutputHandler.chatError(player, "Veuillez vous connecter avec /auth login motdepasse");
         }
     }
 
@@ -191,7 +191,7 @@ public class AuthEventHandler extends ServerEventHandler
         if (!ModuleAuth.isAuthenticated(event.entityPlayer))
         {
             event.setCanceled(true);
-            ChatOutputHandler.chatError(event.entityPlayer, "Login required. Try /auth help.");
+            ChatOutputHandler.chatError(event.entityPlayer, "Veuillez vous connecter avec /auth login motdepasse");
         }
     }
 
@@ -200,7 +200,7 @@ public class AuthEventHandler extends ServerEventHandler
      * event) { UUID username = event.entityPlayer;
      * 
      * if (!ModuleAuth.hasSession.contains(username)) { event.setResult(Result.DENY);
-     * ChatOutputHandler.chatError(event.entityPlayer, "Login required. Try /auth help."); } }
+     * ChatOutputHandler.chatError(event.entityPlayer, "Veuillez vous connecter avec /auth login motdepasse"); } }
      */
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -210,11 +210,11 @@ public class AuthEventHandler extends ServerEventHandler
             return;
         if (!ModuleAuth.isRegistered(event.player.getPersistentID()))
         {
-            ChatOutputHandler.chatError(event.player, "Registration required. Try /auth help.");
+            ChatOutputHandler.chatError(event.player, "Veuillez vous inscrire avec /auth register motdepasse");
         }
         else
         {
-            ChatOutputHandler.chatError(event.player, "Login required. Try /auth help.");
+            ChatOutputHandler.chatError(event.player, "Veuillez vous connecter avec /auth login motdepasse");
         }
 
         if (!PermissionManager.checkPermission(event.player, "fe.auth.isVIP"))

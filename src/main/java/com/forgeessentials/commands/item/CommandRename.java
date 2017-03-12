@@ -27,7 +27,7 @@ public class CommandRename extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/rename <new name> Renames the item you are currently holding.";
+        return "/rename <nouveau nom> Renomme l'item tenu";
     }
 
     @Override
@@ -56,7 +56,7 @@ public class CommandRename extends ForgeEssentialsCommandBase
 
         ItemStack is = sender.inventory.getCurrentItem();
         if (is == null)
-            throw new TranslatedCommandException("You are not holding a valid item.");
+            throw new TranslatedCommandException("Vous ne tenez pas un item valide.");
 
         StringBuilder sb = new StringBuilder();
         for (String arg : args)

@@ -35,7 +35,7 @@ public class CommandDoAs extends ForgeEssentialsCommandBase
     public String getCommandUsage(ICommandSender sender)
     {
 
-        return "/doas <player> <command> Run a command as another player.";
+        return "/doas <joueur> <commande> Ex\u00E9cute une commande en tant qu'un autre joueur";
     }
 
     @Override
@@ -93,12 +93,11 @@ public class CommandDoAs extends ForgeEssentialsCommandBase
         EntityPlayerMP player = UserIdent.getPlayerByMatchOrUsername(sender, args[0]);
         if (player != null)
         {
-            ChatOutputHandler.chatWarning(player, Translator.format("Player %s is attempting to issue a command as you.", sender.getCommandSenderName()));
             FMLCommonHandler.instance().getMinecraftServerInstance().getCommandManager().executeCommand(player, cmd.toString());
-            ChatOutputHandler.chatConfirmation(sender, Translator.format("Successfully issued command as %s", args[0]));
+            ChatOutputHandler.chatConfirmation(sender, Translator.format("Command ex\u00E9cut\u00E9e en tant que %s avec succ\u00E8s", args[0]));
         }
         else
-            throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+            throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
     }
 
     @Override

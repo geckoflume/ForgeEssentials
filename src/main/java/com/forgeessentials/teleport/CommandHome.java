@@ -37,7 +37,7 @@ public class CommandHome extends ForgeEssentialsCommandBase
     {
         if (sender instanceof EntityPlayer)
         {
-            return "/home [here|x, y, z] Set your home location.";
+            return "/home [here|x, y, z] D\u00E9finit l'emplacement de votre r\u00E9sidence";
         }
         else
         {
@@ -70,7 +70,7 @@ public class CommandHome extends ForgeEssentialsCommandBase
         {
             WarpPoint home = PlayerInfo.get(sender.getPersistentID()).getHome();
             if (home == null)
-                throw new TranslatedCommandException("No home set. Use \"/home set\" first.");
+                throw new TranslatedCommandException("Pas de r\u00E9sidence d\u00E9finie. Faites \"/home set\" d'abord.");
             TeleportHelper.teleport(sender, home);
         }
         else
@@ -81,13 +81,13 @@ public class CommandHome extends ForgeEssentialsCommandBase
                 if (args.length == 2)
                 {
                     if (!PermissionManager.checkPermission(sender, TeleportModule.PERM_HOME_OTHER))
-                        throw new TranslatedCommandException("You don't have the permission to access other players home.");
+                        throw new TranslatedCommandException("Vous n'avez pas la permission d'acc\u00E9der \u00E0 la r\u00E9sidence des autres joueurs.");
                     player = UserIdent.getPlayerByMatchOrUsername(sender, args[1]);
                     if (player == null)
                         throw new TranslatedCommandException("Player %s not found.", args[1]);
                 }
                 else if (!PermissionManager.checkPermission(sender, TeleportModule.PERM_HOME_SET))
-                    throw new TranslatedCommandException("You don't have the permission to set your home location.");
+                    throw new TranslatedCommandException("Vous n'avez pas la permission de d\u00E9finir l'emplcement de votre r\u00E9sidence.");
 
                 WarpPoint p = new WarpPoint(sender);
                 PlayerInfo info = PlayerInfo.get(player.getPersistentID());
@@ -96,7 +96,7 @@ public class CommandHome extends ForgeEssentialsCommandBase
                 ChatOutputHandler.chatConfirmation(sender, Translator.format("Home set to: %1.0f, %1.0f, %1.0f", p.getX(), p.getY(), p.getZ()));
             }
             else
-                throw new TranslatedCommandException("Unknown subcommand");
+                throw new TranslatedCommandException("Sous-commande inconnue");
         }
     }
 

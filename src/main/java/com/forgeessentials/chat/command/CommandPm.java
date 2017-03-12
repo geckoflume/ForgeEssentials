@@ -50,7 +50,7 @@ public class CommandPm extends ParserCommandBase
     @Override
     public String getCommandUsage(ICommandSender p_71518_1_)
     {
-        return "/pm <player>: Sticky private message mode";
+        return "/pm <joueur>: Envoyer un message priv\u00E9";
     }
 
     @Override
@@ -78,14 +78,14 @@ public class CommandPm extends ParserCommandBase
         if (target == null)
         {
             if (arguments.size() != 1)
-                throw new TranslatedCommandException("You must first select a target with /pm <player>");
+                throw new TranslatedCommandException("Vous devez d'abord s\u00E9lectionner un destinataire avec /pm <joueur>");
             UserIdent player = arguments.parsePlayer(true, true);
             if (arguments.isTabCompletion)
                 return;
             if (arguments.sender == player.getPlayer())
                 throw new PlayerNotFoundException("commands.message.sameTarget");
             setTarget(arguments.sender, player.getPlayer());
-            arguments.confirm("Set PM target to %s", player.getUsernameOrUuid());
+            arguments.confirm("Le destinataire est %s", player.getUsernameOrUuid());
         }
         else
         {
@@ -94,7 +94,7 @@ public class CommandPm extends ParserCommandBase
             if (arguments.isEmpty())
             {
                 clearTarget(arguments.sender);
-                arguments.confirm("Cleared PM target");
+                arguments.confirm("Destinataire r\u00E9initialis\u00E9");
             }
             else
             {

@@ -171,7 +171,7 @@ public class ModuleAfterlife extends ServerEventHandler
         if (grave.isProtected)
         {
             event.setCanceled(true);
-            ChatOutputHandler.chatError(event.getPlayer(), Translator.translate("You may not defile the grave of a player"));
+            ChatOutputHandler.chatError(event.getPlayer(), Translator.translate("Vous ne devriez pas profaner la tombe d'un joueur"));
             return;
         }
         if (grave.canOpen(event.getPlayer()))

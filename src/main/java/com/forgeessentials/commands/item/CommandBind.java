@@ -48,7 +48,7 @@ public class CommandBind extends ParserCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/bind <left|right>: Bind a command to an item";
+        return "/bind <left|right>: Lie une commande \u00E0 un item";
     }
 
     @Override
@@ -75,7 +75,7 @@ public class CommandBind extends ParserCommandBase
     {
         if (arguments.isEmpty())
         {
-            arguments.confirm("/bind <left|right> <command...>: Bind command to an item");
+            arguments.confirm("/bind <left|right> <commande...>: Lie une commande \u00E0 un item");
             return;
         }
 
@@ -89,11 +89,11 @@ public class CommandBind extends ParserCommandBase
             {
                 ItemStack is = arguments.senderPlayer.inventory.getCurrentItem();
                 if (is == null)
-                    throw new TranslatedCommandException("You are not holding a valid item.");
+                    throw new TranslatedCommandException("Vous ne tenez pas un item valide.");
                 NBTTagCompound tag = is.getTagCompound();
                 if (tag != null)
                     tag.removeTag(TAG_NAME);
-                arguments.confirm("Cleared bound commands from item");
+                arguments.confirm("Commandes r\u00E9initialis\u00E9es pour cet item");
             }
             return;
         }
@@ -101,18 +101,18 @@ public class CommandBind extends ParserCommandBase
         // Get correct side
         boolean isLeft = side.equals("left");
         if (!isLeft && !side.equals("right"))
-            throw new TranslatedCommandException("Side must be either left or right");
+            throw new TranslatedCommandException("Vous devez choisir left ou right");
 
         if (arguments.isEmpty())
         {
-            arguments.confirm("/bind " + side + " <command...>: Bind command to an item");
-            arguments.confirm("/bind " + side + " none: Clear bound command");
+            arguments.confirm("/bind " + side + " <commande...>: Lie une commande \u00E0 un item");
+            arguments.confirm("/bind " + side + " none : R\u00E9initialise la commande li\u00E9e");
             return;
         }
 
         ItemStack is = arguments.senderPlayer.inventory.getCurrentItem();
         if (is == null)
-            throw new TranslatedCommandException("You are not holding a valid item.");
+            throw new TranslatedCommandException("Vous ne tenez pas un item valide.");
         NBTTagCompound tag = ItemUtil.getTagCompound(is);
         NBTTagCompound bindTag = ItemUtil.getCompoundTag(tag, TAG_NAME);
         NBTTagCompound display = tag.getCompoundTag("display");
@@ -129,7 +129,7 @@ public class CommandBind extends ParserCommandBase
         {
             bindTag.removeTag(side);
             display.setTag("Lore", new NBTTagList());
-            arguments.confirm("Cleared " + side + " bound command from item");
+            arguments.confirm("La commande " + side + " li\u00E9e \u00E0 l'item a \u00E9t\u00E9 r\u00E9initialis\u00E9e");
         }
         else
         {
@@ -145,7 +145,7 @@ public class CommandBind extends ParserCommandBase
                 if (lore.getStringTagAt(i).startsWith(loreStart))
                 {
                     lore.func_150304_a(i, loreTag);
-                    arguments.confirm("Bound command to item");
+                    arguments.confirm("Commande li\u00E9e \u00E0 l'item");
                     return;
                 }
             }
@@ -153,7 +153,7 @@ public class CommandBind extends ParserCommandBase
             display.setTag("Lore", lore);
             tag.setTag("display", display);
         }
-        arguments.confirm("Bound command to item");
+        arguments.confirm("Commande li\u00E9e \u00E0 l'item");
     }
 
     @SubscribeEvent

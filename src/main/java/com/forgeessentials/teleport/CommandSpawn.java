@@ -40,11 +40,11 @@ public class CommandSpawn extends ForgeEssentialsCommandBase
     {
         if (sender instanceof EntityPlayer)
         {
-            return "/spawn [player] Teleport you or another player to their spawn point.";
+            return "/spawn [joueur] T\u00E9l\u00E9porte vous ou un autre joueur au spawn";
         }
         else
         {
-            return "/spawn <player> Teleport a player to their spawn point.";
+            return "/spawn <joueur> T\u00E9l\u00E9porte un joueur au spawn";
         }
     }
 
@@ -78,7 +78,7 @@ public class CommandSpawn extends ForgeEssentialsCommandBase
             EntityPlayerMP player = UserIdent.getPlayerByMatchOrUsername(sender, args[0]);
             if (player == null)
             {
-                throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+                throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
             }
 
             WarpPoint point = RespawnHandler.getSpawn(player, null);
@@ -117,7 +117,7 @@ public class CommandSpawn extends ForgeEssentialsCommandBase
         EntityPlayerMP player = UserIdent.getPlayerByMatchOrUsername(sender, args[0]);
         if (player == null)
         {
-            throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+            throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
         }
 
         WarpPoint point = RespawnHandler.getSpawn(player, null);

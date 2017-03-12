@@ -28,7 +28,7 @@ public class CommandDuplicate extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender par1ICommandSender)
     {
-        return "/duplicate [amount]: Duplicates your current item";
+        return "/duplicate [quantit\u00E9]: Duplique l'item actuel";
     }
 
     @Override
@@ -54,7 +54,7 @@ public class CommandDuplicate extends ForgeEssentialsCommandBase
     {
         ItemStack stack = player.getCurrentEquippedItem();
         if (stack == null)
-            throw new TranslatedCommandException("No item equipped");
+            throw new TranslatedCommandException("Aucun item tenu");
 
         int stackSize = 0;
         if (args.length > 0)

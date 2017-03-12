@@ -38,7 +38,7 @@ public class CommandEnchant extends ParserCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/enchant (<name> [lvl])*: Enchants the current item";
+        return "/enchant (<nom> [lvl])*: Enchante l'item actuel";
     }
 
     @Override
@@ -64,7 +64,7 @@ public class CommandEnchant extends ParserCommandBase
     {
         ItemStack stack = arguments.senderPlayer.getCurrentEquippedItem();
         if (stack == null)
-            throw new TranslatedCommandException("You are not holding a valid item");
+            throw new TranslatedCommandException("Vous ne tenez pas un item valide");
 
         List<String> validEnchantmentNames = new ArrayList<>();
         Map<String, Enchantment> validEnchantments = new HashMap<>();
@@ -80,7 +80,7 @@ public class CommandEnchant extends ParserCommandBase
         {
             if (arguments.isTabCompletion)
                 return;
-            arguments.confirm("Possible enchantments: %s", StringUtils.join(validEnchantmentNames, ", "));
+            arguments.confirm("Enchantements possibles : %s", StringUtils.join(validEnchantmentNames, ", "));
             return;
         }
 
@@ -92,7 +92,7 @@ public class CommandEnchant extends ParserCommandBase
             String name = arguments.remove();
             Enchantment enchantment = validEnchantments.get(name.toLowerCase());
             if (enchantment == null)
-                throw new TranslatedCommandException("Invalid enchantment name %s!", name);
+                throw new TranslatedCommandException("Nom d'enchantement %s invalide !", name);
 
             if (arguments.isEmpty())
             {

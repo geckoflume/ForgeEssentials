@@ -48,7 +48,7 @@ public class CommandReply extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/r <message>: Reply to last player that sent you a message";
+        return "/r <message>: R\u00E9pondre au dernier joueur qui vous a envoy\u00E9 un message";
     }
 
     @Override
@@ -77,7 +77,7 @@ public class CommandReply extends ForgeEssentialsCommandBase
 
         ICommandSender target = getReplyTarget(sender);
         if (target == null)
-            throw new PlayerNotFoundException("No reply target found");
+            throw new PlayerNotFoundException("Aucun destinataire trouv\u00E9");
 
         if (target == sender)
             throw new PlayerNotFoundException("commands.message.sameTarget", new Object[0]);

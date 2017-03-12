@@ -3,17 +3,17 @@ package com.forgeessentials.api.permissions;
 public final class FEPermissions
 {
 
-    public static final String MSG_NO_COMMAND_PERM = "You don't have permissions to use this command!";
-    public static final String MSG_NO_PERM = "You don't have permissions for that!";
+    public static final String MSG_NO_COMMAND_PERM = "Vous n'avez pas la permission d'utiliser cette commande !";
+    public static final String MSG_NO_PERM = "Vous n'avez pas la permission pour faire cela !";
 
-    public static final String MSG_NO_PLAYER_COMMAND = "This command cannot be used as player";
-    public static final String MSG_NO_CONSOLE_COMMAND = "This command cannot be used from console";
-    public static final String MSG_NO_BLOCK_COMMAND = "This command cannot be used by command-blocks";
-    public static final String MSG_UNKNOWN_SUBCOMMAND = "Unknown subcommand %s";
+    public static final String MSG_NO_PLAYER_COMMAND = "Cette commande ne peut pas \u00EAtre utilis\u00E9e par un joueur";
+    public static final String MSG_NO_CONSOLE_COMMAND = "Cette commande ne peut pas \u00EAtre utilis\u00E9e depuis la console";
+    public static final String MSG_NO_BLOCK_COMMAND = "Cette commande ne peut pas \u00EAtre utilis\u00E9e par les blocs de commande";
+    public static final String MSG_UNKNOWN_SUBCOMMAND = "Sous-commande %s inconnue";
 
-    public static final String MSG_NOT_ENOUGH_ARGUMENTS = "Not enough arguments!";
-    public static final String MSG_INVALID_SYNTAX = "Invalid syntax!";
-    public static final String MSG_INVALID_ARGUMENT = "Invalid argument %s!";
+    public static final String MSG_NOT_ENOUGH_ARGUMENTS = "Pas assez d'arguments !";
+    public static final String MSG_INVALID_SYNTAX = "Syntaxe invalide !";
+    public static final String MSG_INVALID_ARGUMENT = "L'argument %s est invalide !";
 
     // ------------------------------------------------
     // -- Internal permissions

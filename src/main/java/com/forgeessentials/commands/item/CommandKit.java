@@ -63,7 +63,7 @@ public class CommandKit extends ParserCommandBase implements ConfigurableCommand
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/kit [name] [set|del] [cooldown]: Use and modify item kits";
+        return "/kit [nom] [set|del] [cooldown]: Utilise et modifie les kits";
     }
 
     @Override
@@ -106,7 +106,7 @@ public class CommandKit extends ParserCommandBase implements ConfigurableCommand
         if (arguments.isEmpty())
         {
             if (!arguments.isTabCompletion)
-                arguments.confirm("Available kits: %s", StringUtils.join(getAvailableKits(arguments), ", "));
+                arguments.confirm("Kits disponibles : %s", StringUtils.join(getAvailableKits(arguments), ", "));
             return;
         }
 
@@ -117,9 +117,9 @@ public class CommandKit extends ParserCommandBase implements ConfigurableCommand
         if (arguments.isEmpty())
         {
             if (kit == null)
-                throw new TranslatedCommandException("Kit %s does not exist", kitName);
+                throw new TranslatedCommandException("Le kit %s n'existe pas", kitName);
             if (!arguments.hasPermission(PERM + "." + kit.getName()))
-                throw new TranslatedCommandException("You are not allowed to use this kit");
+                throw new TranslatedCommandException("Vous n'\u00EAtes pas autoris\u00E9 \u00E0 utiliser ce kit");
             kit.giveKit(arguments.senderPlayer);
             return;
         }
@@ -136,7 +136,7 @@ public class CommandKit extends ParserCommandBase implements ConfigurableCommand
                 public void respond(Boolean response)
                 {
                     if (response == null)
-                        arguments.error("Question timed out");
+                        arguments.error("Question expir\u00E9e");
                     else if (!response)
                         return;
                     int cooldown = -1;
@@ -144,20 +144,20 @@ public class CommandKit extends ParserCommandBase implements ConfigurableCommand
                         cooldown = arguments.parseInt();
                     addKit(new Kit(arguments.senderPlayer, kitName, cooldown));
                     if (cooldown < 0)
-                        arguments.confirm("Kit %s saved for one-time-use", kitName);
+                        arguments.confirm("Kit %s sauvegard\u00E9 pour un usage unique", kitName);
                     else
-                        arguments.confirm("Kit %s saved with cooldown %s", kitName, ChatOutputHandler.formatTimeDurationReadable(cooldown, true));
+                        arguments.confirm("Kit %s sauvegard\u00E9 avec un cooldown de %s", kitName, ChatOutputHandler.formatTimeDurationReadable(cooldown, true));
                 }
             };
             if (kit == null)
                 callback.respond(true);
             else
-                Questioner.addChecked(arguments.sender, Translator.format("Overwrite kit %s?", kitName), callback);
+                Questioner.addChecked(arguments.sender, Translator.format("\u00E9craser le kit %s?", kitName), callback);
             break;
         case "del":
         case "delete":
             removeKit(kit);
-            arguments.confirm("Deleted kit %s", kitName);
+            arguments.confirm("Kit %s supprim\u00E9", kitName);
             break;
         default:
             throw new TranslatedCommandException(FEPermissions.MSG_UNKNOWN_SUBCOMMAND, subCommand);

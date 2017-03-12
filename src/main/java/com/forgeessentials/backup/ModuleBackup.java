@@ -240,11 +240,11 @@ public class ModuleBackup extends ConfigLoaderBase
                             backupDims.add(world.provider.dimensionId);
                             backupWorlds.add(world);
                         }
-                    ModuleBackup.notify(Translator.format("Starting backup of dimensions %s", StringUtils.join(backupDims, ", ")));
+                    ModuleBackup.notify(Translator.format("D\u00E9but de la sauvegarde des dimensions %s", StringUtils.join(backupDims, ", ")));
                     for (WorldServer worldServer : backupWorlds)
                         backup(worldServer, false);
                     cleanBackups();
-                    ModuleBackup.notify("Backup finished!");
+                    ModuleBackup.notify("Sauvegarde termin\u00E9e.");
                 }
                 finally
                 {
@@ -259,13 +259,13 @@ public class ModuleBackup extends ConfigLoaderBase
     {
         if (backupThread != null)
         {
-            ModuleBackup.notify("Backup still in progress");
+            ModuleBackup.notify("Sauvegarde toujours en cours.");
             return;
         }
         final WorldServer world = DimensionManager.getWorld(dimension);
         if (world == null)
         {
-            ModuleBackup.notify(Translator.format("Dimension %d does not exist or is not loaded", dimension));
+            ModuleBackup.notify(Translator.format("La dimension %d n'existe pas ou n'est pas charg\u00E9e", dimension));
             return;
         }
         backupThread = new Thread(new Runnable() {
@@ -298,12 +298,12 @@ public class ModuleBackup extends ConfigLoaderBase
     private static synchronized void backup(WorldServer world, boolean notify)
     {
         if (notify)
-            notify(String.format("Starting backup of dim %d...", world.provider.dimensionId));
+            notify(String.format("D\u00E9but de la sauvegarde de la dimension %d...", world.provider.dimensionId));
 
         // Save world
         if (!saveWorld(world))
         {
-            notify(String.format("Backup of dim %s failed: Could not save world", world.provider.dimensionId));
+            notify(String.format("La sauvegarde de la dimension %s a \u00E9chou\u00E9 : Impossible de sauvegarder le monde", world.provider.dimensionId));
             return;
         }
 
@@ -314,7 +314,7 @@ public class ModuleBackup extends ConfigLoaderBase
         if (!backupDir.exists())
             if (!backupDir.mkdirs())
             {
-                notify(String.format("Backup of dim %s failed: Could not create backup directory", world.provider.dimensionId));
+                notify(String.format("La sauvegarde de la dimension %s a \u00E9chou\u00E9 : Impossible de cr\u00E9er le r\u00E9pertoire de sauvegarde", world.provider.dimensionId));
                 return;
             }
 
@@ -322,7 +322,7 @@ public class ModuleBackup extends ConfigLoaderBase
         try (FileOutputStream fileStream = new FileOutputStream(backupFile); //
                 ZipOutputStream zipStream = new ZipOutputStream(fileStream);)
         {
-            LoggingHandler.felog.info(String.format("Listing files for backup of world %d", world.provider.dimensionId));
+            LoggingHandler.felog.info(String.format("Listage des fichiers pour la sauvegarde du monde %d", world.provider.dimensionId));
             for (File file : enumWorldFiles(world, world.getChunkSaveLocation(), null))
             {
                 String relativePath = baseUri.relativize(file.toURI()).getPath();
@@ -334,21 +334,21 @@ public class ModuleBackup extends ConfigLoaderBase
                 }
                 catch (IOException e)
                 {
-                    LoggingHandler.felog.warn(String.format("Unable to backup file %s", relativePath));
+                    LoggingHandler.felog.warn(String.format("Impossible de sauvegarder le fichier %s", relativePath));
                 }
             }
             zipStream.closeEntry();
         }
         catch (Exception ex)
         {
-            LoggingHandler.felog.error(String.format("Severe error during backup of dim %d", world.provider.dimensionId));
+            LoggingHandler.felog.error(String.format("Erreur grave lors de la sauvegarde de la dimension %d", world.provider.dimensionId));
             ex.printStackTrace();
             if (notify)
-                notify(String.format("Error during backup of dim %d", world.provider.dimensionId));
+                notify(String.format("Erreur lors de la sauvegarde de la dimension %d", world.provider.dimensionId));
         }
 
         if (notify)
-            notify("Backup finished");
+            notify("Sauvegarde termin\u00E9e.");
     }
 
     private static List<File> enumWorldFiles(WorldServer world, File dir, List<File> files)
@@ -395,12 +395,12 @@ public class ModuleBackup extends ConfigLoaderBase
         }
         catch (MinecraftException e)
         {
-            LoggingHandler.felog.error(String.format("Could not save world %d", world.provider.dimensionId));
+            LoggingHandler.felog.error(String.format("Impossible de sauvegarder le monde %d", world.provider.dimensionId));
             return false;
         }
         catch (Exception e)
         {
-            LoggingHandler.felog.error("Error while saving world");
+            LoggingHandler.felog.error("Erreur lors de la sauvegarde du monde");
             return false;
         }
         finally
@@ -461,7 +461,7 @@ public class ModuleBackup extends ConfigLoaderBase
                 else if (backup.getKey().before(oldestBackup))
                 {
                     if (!backup.getValue().delete())
-                        LoggingHandler.felog.error(String.format("Could not delete backup file %s", backup.getValue().getAbsolutePath()));
+                        LoggingHandler.felog.error(String.format("Impossible de supprimer le fichier de sauvegarde %s", backup.getValue().getAbsolutePath()));
                     it.remove();
                 }
             }
@@ -484,7 +484,7 @@ public class ModuleBackup extends ConfigLoaderBase
                     if (backup.getKey().after(nextDate))
                         break;
                     if (!backup.getValue().delete())
-                        LoggingHandler.felog.error(String.format("Could not delete backup file %s", backup.getValue().getAbsolutePath()));
+                        LoggingHandler.felog.error(String.format("Impossible de supprimer le fichier de sauvegarde %s", backup.getValue().getAbsolutePath()));
                     it.remove();
                 }
                 oldestDailyBackup = nextDate;
@@ -508,7 +508,7 @@ public class ModuleBackup extends ConfigLoaderBase
                     if (backup.getKey().after(nextDate))
                         break;
                     if (!backup.getValue().delete())
-                        LoggingHandler.felog.error(String.format("Could not delete backup file %s", backup.getValue().getAbsolutePath()));
+                        LoggingHandler.felog.error(String.format("mpossible de supprimer le fichier de sauvegarde %s", backup.getValue().getAbsolutePath()));
                     it.remove();
                 }
                 oldestWeeklyBackup = nextDate;

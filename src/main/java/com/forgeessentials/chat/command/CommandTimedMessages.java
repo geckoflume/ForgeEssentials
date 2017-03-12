@@ -31,10 +31,10 @@ public class CommandTimedMessages extends ParserCommandBase implements ConfigSav
 
     public static final String CATEGORY = ModuleChat.CONFIG_CATEGORY + ".TimedMessage";
 
-    public static final String MESSAGES_HELP = "Each line is 1 message. \nYou can use scripting arguments and color codes. "
-            + "\nUsing json messages (tellraw) is also supported";
+    public static final String MESSAGES_HELP = "Chaque ligne est 1 message. \nVous pouvez utiliser les arguments de scripts et les codes de couleurs. "
+            + "\nL'utilisation de messages json(tellraw) est aussi support\u00E9e";
 
-    public static final String[] MESSAGES_DEFAULT = new String[] { "This server runs ForgeEssentials server management mod" };
+    public static final String[] MESSAGES_DEFAULT = new String[] { "Ce serveur ex\u00E9cute le mod de gestion de serveur ForgeEssentials" };
 
     protected static List<String> messages = new ArrayList<>();
 
@@ -68,7 +68,7 @@ public class CommandTimedMessages extends ParserCommandBase implements ConfigSav
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/timedmessage: Manage automatically sent messages";
+        return "/timedmessage: G\u00E8re les messages envoy\u00E9s automatiquement";
     }
 
     @Override
@@ -94,12 +94,12 @@ public class CommandTimedMessages extends ParserCommandBase implements ConfigSav
     {
         if (arguments.isEmpty())
         {
-            arguments.confirm("/tm add <message>: Add a message");
-            arguments.confirm("/tm list: Delete a message");
-            arguments.confirm("/tm delete <id>: Delete a message");
-            arguments.confirm("/tm send <id>: Send a message");
-            arguments.confirm("/tm interval <sec>: Set message interval");
-            arguments.confirm("/tm shuffle <true|false>: Enable/disable shuffling of messages");
+            arguments.confirm("/tm add <message>: Ajoute un message");
+            arguments.confirm("/tm list: Liste les messages");
+            arguments.confirm("/tm delete <id>: Supprime un message");
+            arguments.confirm("/tm send <id>: Envoie un message");
+            arguments.confirm("/tm interval <sec>: D\u00E9finit l'intervalle des messages");
+            arguments.confirm("/tm shuffle <true|false>: Active/D\u00E9sactive l'affichage de messages al\u00E9atoirement");
             return;
         }
 
@@ -136,12 +136,12 @@ public class CommandTimedMessages extends ParserCommandBase implements ConfigSav
             return;
         if (arguments.isEmpty())
         {
-            arguments.confirm("/timedmessage add <message...>: Add a timed message");
+            arguments.confirm("/timedmessage add <message...>: Ajoute un message pr\u00E9vu");
             return;
         }
         String message = arguments.toString();
         addMessage(message);
-        arguments.confirm("Added new message:");
+        arguments.confirm("Le message suivant a \u00E9t\u00E9 ajout\u00E9 :");
         arguments.sendMessage(formatMessage(message));
         ForgeEssentials.getConfigManager().save(ModuleChat.CONFIG_FILE);
     }
@@ -150,7 +150,7 @@ public class CommandTimedMessages extends ParserCommandBase implements ConfigSav
     {
         if (arguments.isTabCompletion)
             return;
-        arguments.confirm("List of messages:");
+        arguments.confirm("Liste des messages:");
         for (int i = 0; i < messages.size(); i++)
             arguments.sendMessage(new ChatComponentTranslation(String.format("%d: %s", i, formatMessage(messages.get(i)))));
     }
@@ -161,14 +161,14 @@ public class CommandTimedMessages extends ParserCommandBase implements ConfigSav
             return;
         if (arguments.isEmpty())
         {
-            arguments.confirm("/timedmessage delete <index>: Delete a timed message");
+            arguments.confirm("/timedmessage delete <index>: Supprime un message pr\u00E9vu");
             return;
         }
         int index = arguments.parseInt();
         if (index < 0 || index >= messages.size())
             throw new TranslatedCommandException("Index out of bounds");
         messages.remove(index);
-        arguments.confirm("Removed message");
+        arguments.confirm("Message supprim\u00E9");
         ForgeEssentials.getConfigManager().save(ModuleChat.CONFIG_FILE);
     }
 
@@ -178,7 +178,7 @@ public class CommandTimedMessages extends ParserCommandBase implements ConfigSav
             return;
         if (arguments.isEmpty())
         {
-            arguments.confirm("/timedmessage send <index>: Send a timed message");
+            arguments.confirm("/timedmessage send <index>: Envoie un message pr\u00E9vu");
             return;
         }
         int index = arguments.parseInt();
@@ -193,7 +193,7 @@ public class CommandTimedMessages extends ParserCommandBase implements ConfigSav
             return;
         if (arguments.isEmpty())
         {
-            arguments.confirm("/tm interval <sec>: Set message interval (0 = disabled)");
+            arguments.confirm("/tm interval <sec>: D\u00E9finit l'intervalle des messages (0 = d\u00E9sactiv\u00E9)");
             return;
         }
         setInterval(arguments.parseInt());
@@ -204,7 +204,7 @@ public class CommandTimedMessages extends ParserCommandBase implements ConfigSav
     {
         if (arguments.isEmpty())
         {
-            arguments.confirm("/tm shuffle <true|false>: Enable/disable shuffling of messages");
+            arguments.confirm("/tm shuffle <true|false>: Active/D\u00E9sactive l'affichage de messages al\u00E9atoirement");
             return;
         }
         boolean newShuffle = arguments.parseBoolean();
@@ -279,7 +279,7 @@ public class CommandTimedMessages extends ParserCommandBase implements ConfigSav
         {
             if (message.contains("{"))
             {
-                LoggingHandler.felog.warn("Error in timedmessage format: " + ExceptionUtils.getRootCause(e).getMessage());
+                LoggingHandler.felog.warn("Erreur dans le format du timedmessage : " + ExceptionUtils.getRootCause(e).getMessage());
             }
             return new ChatComponentText(message);
         }

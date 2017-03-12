@@ -65,7 +65,7 @@ public class CommandEnderchest extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/enderchest Opens your enderchest.";
+        return "/enderchest Ouvre votre enderchest.";
     }
 
 }

@@ -93,7 +93,7 @@ public class TeleportHelper extends ServerEventHandler
         {
             if (playerPos.distance(new WarpPoint(player)) > 0.2)
             {
-                ChatOutputHandler.chatWarning(player, "Teleport cancelled.");
+                ChatOutputHandler.chatWarning(player, "Teleportation annul\u00E9e.");
                 return true;
             }
             if (System.currentTimeMillis() - start < timeout)
@@ -101,7 +101,7 @@ public class TeleportHelper extends ServerEventHandler
                 return false;
             }
             checkedTeleport(player, point);
-            ChatOutputHandler.chatConfirmation(player, "Teleported.");
+            ChatOutputHandler.chatConfirmation(player, "T\u00E9l\u00E9port\u00E9.");
             return true;
         }
 
@@ -127,7 +127,7 @@ public class TeleportHelper extends ServerEventHandler
             MinecraftServer.getServer().worldServerForDimension(point.getDimension());
             if (point.getWorld() == null)
             {
-                ChatOutputHandler.chatError(player, Translator.translate("Unable to teleport! Target dimension does not exist"));
+                ChatOutputHandler.chatError(player, Translator.translate("T\u00E9l\u00E9portation impossible ! La dimension de destination n'existe pas !"));
                 return;
             }
         }
@@ -135,14 +135,14 @@ public class TeleportHelper extends ServerEventHandler
         // Check permissions
         UserIdent ident = UserIdent.get(player);
         if (!APIRegistry.perms.checkPermission(player, TELEPORT_FROM))
-            throw new TranslatedCommandException("You are not allowed to teleport from here.");
+            throw new TranslatedCommandException("Vous n'\u00EAtes pas autoris\u00E9 \u00E0 vous t\u00E9l\u00E9porter depuis cet emplacement.");
         if (!APIRegistry.perms.checkUserPermission(ident, point.toWorldPoint(), TELEPORT_TO))
-            throw new TranslatedCommandException("You are not allowed to teleport to that location.");
+            throw new TranslatedCommandException("Vous n'\u00EAtes pas autoris\u00E9 \u00E0 vous t\u00E9l\u00E9porter \u00E0 cet emplacement.");
         if (player.dimension != point.getDimension()) {
             if (!APIRegistry.perms.checkPermission(player, TELEPORT_CROSSDIM_FROM))
-                throw new TranslatedCommandException("You are not allowed to teleport from this dimension.");
+                throw new TranslatedCommandException("Vous n'\u00EAtes pas autoris\u00E9 \u00E0 vous t\u00E9l\u00E9porter depuis cette dimension.");
             if (!APIRegistry.perms.checkUserPermission(ident, point.toWorldPoint(), TELEPORT_CROSSDIM_TO))
-                throw new TranslatedCommandException("You are not allowed to teleport to that dimension.");
+                throw new TranslatedCommandException("Vous n'\u00EAtes pas autoris\u00E9 \u00E0 vous t\u00E9l\u00E9porter depuis \u00E0 dimension.");
         }
 
         // Get and check teleport cooldown
@@ -153,7 +153,7 @@ public class TeleportHelper extends ServerEventHandler
             long cooldownDuration = (pi.getLastTeleportTime() + teleportCooldown) - System.currentTimeMillis();
             if (cooldownDuration >= 0)
             {
-                ChatOutputHandler.chatNotification(player, Translator.format("Cooldown still active. %d seconds to go.", cooldownDuration / 1000));
+                ChatOutputHandler.chatNotification(player, Translator.format("Cooldown toujours actif. Encore %d secondes restantes.", cooldownDuration / 1000));
                 return;
             }
         }
@@ -168,14 +168,14 @@ public class TeleportHelper extends ServerEventHandler
 
         if (!canTeleportTo(point))
         {
-            ChatOutputHandler.chatError(player, Translator.translate("Unable to teleport! Target location obstructed."));
+            ChatOutputHandler.chatError(player, Translator.translate("T\u00E9l\u00E9portation impossible ! L'emplacement de destionation est obstru\u00E9."));
             return;
         }
 
         // Setup timed teleport
         tpInfos.put(player.getPersistentID(), new TeleportInfo(player, point, teleportWarmup * 1000));
         ChatOutputHandler.chatNotification(player,
-                Translator.format("Teleporting. Please stand still for %s.", ChatOutputHandler.formatTimeDurationReadable(teleportWarmup, true)));
+                Translator.format("La t\u00E9l\u00E9portation commence dans %s. Ne bougez pas.", ChatOutputHandler.formatTimeDurationReadable(teleportWarmup, true)));
     }
 
     public static boolean canTeleportTo(WarpPoint point)
@@ -193,7 +193,7 @@ public class TeleportHelper extends ServerEventHandler
     {
         if (!canTeleportTo(point))
         {
-            ChatOutputHandler.chatError(player, Translator.translate("Unable to teleport! Target location obstructed."));
+            ChatOutputHandler.chatError(player, Translator.translate("T\u00E9l\u00E9portation impossible ! L'emplacement de destionation est obstru\u00E9."));
             return;
         }
 
@@ -209,7 +209,7 @@ public class TeleportHelper extends ServerEventHandler
     {
         if (point.getWorld() == null)
         {
-            LoggingHandler.felog.error("Error teleporting player. Target world is NULL");
+            LoggingHandler.felog.error("T\u00E9l\u00E9portation du joueur impossible ! Le monde de destionation est NULL.");
             return;
         }
         // TODO: Handle teleportation of mounted entity

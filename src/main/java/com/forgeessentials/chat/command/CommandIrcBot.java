@@ -19,7 +19,7 @@ public class CommandIrcBot extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/ircbot [reconnect|disconnect] Connect or disconnect the IRC server bot.";
+        return "/ircbot [reconnect|disconnect] Connecte or d\u00E9connecte le bot IRC.";
     }
 
     @Override
@@ -56,7 +56,7 @@ public class CommandIrcBot extends ForgeEssentialsCommandBase
         }
         else
         {
-            ChatOutputHandler.sendMessage(sender, "IRC bot is " + (IrcHandler.getInstance().isConnected() ? "online" : "offline"));
+            ChatOutputHandler.sendMessage(sender, "Le bot IRC est " + (IrcHandler.getInstance().isConnected() ? "en ligne" : "hors ligne"));
         }
     }
 

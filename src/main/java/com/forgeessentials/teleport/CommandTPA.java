@@ -29,7 +29,7 @@ public class CommandTPA extends ParserCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/tpa [player] <player|<x> <y> <z>|accept|decline> Request to teleport yourself or another player.";
+        return "/tpa [joueur] <joueur|<x> <y> <z>|accept|decline> Requ\u00EAte pour t\u00E9l\u00E9porter vous ou un autre joueur";
     }
 
     @Override
@@ -62,8 +62,8 @@ public class CommandTPA extends ParserCommandBase
     {
         if (arguments.isEmpty())
         {
-            arguments.confirm("/tpa <player>: Request being teleported to another player");
-            arguments.confirm("/tpa <player> <here|x y z>: Propose another player to be teleported");
+            arguments.confirm("/tpa <joueur>: Requ\u00EAte pour se t\u00E9l\u00E9porter \u00E0 un autre joueur");
+            arguments.confirm("/tpa <joueur> <here|x y z>: Proposer \u00E0 un autre joueur de se t\u00E9l\u00E9porter");
             return;
         }
 
@@ -72,20 +72,20 @@ public class CommandTPA extends ParserCommandBase
         {
             if (arguments.isTabCompletion)
                 return;
-            arguments.confirm("Waiting for response by %s", player.getUsernameOrUuid());
+            arguments.confirm("Requ\u00EAte envoy\u00E9e \u00E0 %s", player.getUsernameOrUuid());
             QuestionerCallback callback = new QuestionerCallback() {
                 @Override
                 public void respond(Boolean response)
                 {
                     if (response == null)
-                        arguments.error("TPA request timed out");
+                        arguments.error("La demande de t\u00E9l\u00E9portation a expir\u00E9.");
                     else if (response == false)
-                        arguments.error("TPA declined");
+                        arguments.error("Demande de t\u00E9l\u00E9portation refus\u00E9e.");
                     else
                         TeleportHelper.teleport(arguments.senderPlayer, new WarpPoint(player.getPlayer()));
                 }
             };
-            Questioner.addChecked(player.getPlayer(), Translator.format("Allow teleporting %s to your location?", arguments.sender.getCommandSenderName()),
+            Questioner.addChecked(player.getPlayer(), Translator.format("Autoriser la t\u00E9l\u00E9portation de %s \u00E0 votre emplacement ?", arguments.sender.getCommandSenderName()),
                     callback, 20);
             return;
         }
@@ -112,14 +112,14 @@ public class CommandTPA extends ParserCommandBase
 
         if (arguments.isTabCompletion)
             return;
-        Questioner.addChecked(player.getPlayer(), Translator.format("Do you want to be teleported to %s?", locationName), new QuestionerCallback() {
+        Questioner.addChecked(player.getPlayer(), Translator.format("Voulez-vous \u00EAtre t\u00E9l\u00E9port\u00E9 \u00E0 %s?", locationName), new QuestionerCallback() {
             @Override
             public void respond(Boolean response)
             {
                 if (response == null)
-                    arguments.error("TPA request timed out");
+                    arguments.error("La demande de t\u00E9l\u00E9portation a expir\u00E9.");
                 else if (response == false)
-                    arguments.error("TPA declined");
+                    arguments.error("Demande de t\u00E9l\u00E9portation refus\u00E9e.");
                 else
                     TeleportHelper.teleport(player.getPlayerMP(), point);
             }

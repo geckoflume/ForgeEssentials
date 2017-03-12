@@ -37,7 +37,7 @@ public class CommandVirtualchest extends ForgeEssentialsCommandBase implements C
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/vchest Open a virtual chest";
+        return "/vchest Ouvre un coffre virtuel";
     }
 
     @Override

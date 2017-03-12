@@ -26,7 +26,7 @@ public class CommandIrcPm extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/ircpm <name> <message...>: Send a message to a client on IRC.";
+        return "/ircpm <name> <message...>: Envoie un massage priv\u00E9 \u00E0 un client sur IRC.";
     }
 
     @Override
@@ -51,7 +51,7 @@ public class CommandIrcPm extends ForgeEssentialsCommandBase
     public void processCommand(ICommandSender sender, String[] args)
     {
         if (!IrcHandler.getInstance().isConnected())
-            throw new TranslatedCommandException("Not connected to IRC!");
+            throw new TranslatedCommandException("Non connect\u00E9 \u00E0 IRC !");
         if (args.length < 2)
         {
             throw new WrongUsageException("commands.message.usage");

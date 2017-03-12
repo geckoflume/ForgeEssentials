@@ -48,7 +48,7 @@ public class CommandAFK extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/afk: Mark yourself as away.";
+        return "/afk: Vous rend AFK";
     }
 
     @Override
@@ -118,7 +118,7 @@ public class CommandAFK extends ForgeEssentialsCommandBase
             int autoTime = ServerUtil.parseIntDefault(ident.getPermissionProperty(CommandAFK.PERM_AUTOTIME), 60 * 2);
             int warmup = ServerUtil.parseIntDefault(ident.getPermissionProperty(PERM_WARMUP), 0);
             PlayerInfo.get(sender).setActive(autoTime * 1000 - warmup * 1000);
-            ChatOutputHandler.chatConfirmation(sender, Translator.format("Stand still for %d seconds.", warmup));
+            ChatOutputHandler.chatConfirmation(sender, Translator.format("Ne bougez pas pendant %d secondes.", warmup));
         }
     }
 

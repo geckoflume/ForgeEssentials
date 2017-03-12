@@ -211,14 +211,14 @@ public class ModuleChat
 
         if (!ident.checkPermission(PERM_CHAT))
         {
-            ChatOutputHandler.chatWarning(event.player, "You don't have the permission to write in public chat.");
+            ChatOutputHandler.chatWarning(event.player, "Vous n'avez pas la permission d'\u00E9crire dans le chat public.");
             event.setCanceled(true);
             return;
         }
 
         if (PlayerUtil.getPersistedTag(event.player, false).getBoolean("mute"))
         {
-            ChatOutputHandler.chatWarning(event.player, "You are currently muted.");
+            ChatOutputHandler.chatWarning(event.player, "Vous \u00EAtes muet.");
             event.setCanceled(true);
             return;
         }
@@ -308,7 +308,7 @@ public class ModuleChat
             return;
         if (!ChatConfig.mutedCommands.contains(event.command.getCommandName()))
             return;
-        ChatOutputHandler.chatWarning(event.sender, "You are currently muted.");
+        ChatOutputHandler.chatWarning(event.sender, "Vous \u00EAtes muet.");
         event.setCanceled(true);
     }
 

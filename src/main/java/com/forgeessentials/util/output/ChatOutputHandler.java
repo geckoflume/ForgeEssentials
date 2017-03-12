@@ -467,24 +467,24 @@ public final class ChatOutputHandler extends ConfigLoaderBase
 
         StringBuilder sb = new StringBuilder();
         if (weeks != 0)
-            sb.append(String.format("%d weeks ", weeks));
+            sb.append(String.format("%d semaines ", weeks));
         if (days != 0)
         {
             if (sb.length() > 0)
                 sb.append(", ");
-            sb.append(String.format("%d days ", days));
+            sb.append(String.format("%d jours ", days));
         }
         if (hours != 0)
         {
             if (sb.length() > 0)
                 sb.append(", ");
-            sb.append(String.format("%d hours ", hours));
+            sb.append(String.format("%d heures ", hours));
         }
         if (minutes != 0 || !showSeconds)
         {
             if (sb.length() > 0)
                 if (!showSeconds)
-                    sb.append("and ");
+                    sb.append("et ");
                 else
                     sb.append(", ");
             sb.append(String.format("%d minutes ", minutes));
@@ -493,7 +493,7 @@ public final class ChatOutputHandler extends ConfigLoaderBase
         {
             if (sb.length() > 0)
                 sb.append("and ");
-            sb.append(String.format("%d seconds ", seconds));
+            sb.append(String.format("%d secondes ", seconds));
         }
 
         sb.setLength(sb.length() - 1);

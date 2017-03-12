@@ -26,7 +26,7 @@ public class CommandGroupMessage extends ParserCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/gmsg <group> <msg...>: Send message to a group";
+        return "/gmsg <groupe> <msg...>: Envoyer un message \u00E0 un groupe";
     }
 
     @Override
@@ -59,7 +59,7 @@ public class CommandGroupMessage extends ParserCommandBase
         String group = arguments.remove().toLowerCase();
 
         if (arguments.isEmpty())
-            throw new TranslatedCommandException("Missing chat message");
+            throw new TranslatedCommandException("Message manquant");
 
         IChatComponent msgComponent = func_147176_a(arguments.sender, arguments.toArray(), 0, !(arguments.sender instanceof EntityPlayer));
         ModuleChat.tellGroup(arguments.sender, msgComponent.getUnformattedText(), group);

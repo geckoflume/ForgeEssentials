@@ -22,7 +22,7 @@ public class CommandIrc extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/irc <message...>: Send a message to a client on IRC.";
+        return "/irc <message...>: Envoie un massage \u00E0 un client sur IRC.";
     }
 
     @Override
@@ -47,7 +47,7 @@ public class CommandIrc extends ForgeEssentialsCommandBase
     public void processCommand(ICommandSender sender, String[] args)
     {
         if (!IrcHandler.getInstance().isConnected())
-            throw new TranslatedCommandException("Not connected to IRC!");
+            throw new TranslatedCommandException("Non connect\u00E9 \u00E0 IRC !");
         if (args.length < 1)
         {
             throw new WrongUsageException("commands.message.usage");

@@ -48,7 +48,7 @@ public class CommandKill extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/kill <player> Commit suicide or kill other players (with special permission).";
+        return "/kill <joueur> Commet un suicide ou tue d'autres joueurs";
     }
 
     @Override
@@ -72,10 +72,10 @@ public class CommandKill extends ForgeEssentialsCommandBase
             if (player != null)
             {
                 player.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
-                ChatOutputHandler.chatError(player, Translator.translate("You were killed. You probably deserved it."));
+                ChatOutputHandler.chatError(player, Translator.translate("Vous \u00EAtes mort. Vous le m\u00E9ritiez probablement."));
             }
             else
-                throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+                throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
         }
         else
         {
@@ -93,10 +93,10 @@ public class CommandKill extends ForgeEssentialsCommandBase
             if (player != null)
             {
                 player.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
-                ChatOutputHandler.chatError(player, Translator.translate("You were killed. You probably deserved it."));
+                ChatOutputHandler.chatError(player, Translator.translate("Vous \u00EAtes mort. Vous le m\u00E9ritiez probablement."));
             }
             else
-                throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+                throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
         }
         else
             throw new TranslatedCommandException(getCommandUsage(sender));

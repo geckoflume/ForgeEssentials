@@ -37,11 +37,11 @@ public class CommandRepair extends ForgeEssentialsCommandBase
     {
         if (sender instanceof EntityPlayer)
         {
-            return "/repair [player] Repairs the item you or another player is holding.";
+            return "/repair [joueur] R\u00E9pare l'item que vous ou un autre joueur tenez";
         }
         else
         {
-            return "/repair <player> Repairs the item the player is holding.";
+            return "/repair <joueur> R\u00E9pare l'item que le joueur tient";
         }
 
     }
@@ -77,14 +77,14 @@ public class CommandRepair extends ForgeEssentialsCommandBase
         {
             ItemStack item = sender.getHeldItem();
             if (item == null)
-                throw new TranslatedCommandException("You are not holding a reparable item.");
+                throw new TranslatedCommandException("Vous ne tenez pas un item r\u00E9parable.");
             item.setItemDamage(0);
         }
         else if (args.length == 1 && PermissionManager.checkPermission(sender, getPermissionNode() + ".others"))
         {
             EntityPlayerMP player = UserIdent.getPlayerByMatchOrUsername(sender, args[0]);
             if (player == null)
-                throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+                throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
 
             ItemStack item = player.getHeldItem();
             if (item != null)
@@ -115,7 +115,7 @@ public class CommandRepair extends ForgeEssentialsCommandBase
 
             }
             else
-                throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+                throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
         }
         else
             throw new TranslatedCommandException(getCommandUsage(sender));

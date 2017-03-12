@@ -113,7 +113,7 @@ public class CommandGameMode extends ForgeEssentialsCommandBase
         EntityPlayer player = UserIdent.getPlayerByMatchOrUsername(sender, target);
         if (player == null)
         {
-            ChatOutputHandler.chatError(sender, Translator.format("Unable to find player: %1$s.", target));
+            ChatOutputHandler.chatError(sender, Translator.format("Impossible de trouver le joueur %1$s.", target));
             return;
         }
         setGameMode(sender, target, player.capabilities.isCreativeMode ? WorldSettings.GameType.SURVIVAL : WorldSettings.GameType.CREATIVE);
@@ -124,7 +124,7 @@ public class CommandGameMode extends ForgeEssentialsCommandBase
         EntityPlayer player = UserIdent.getPlayerByMatchOrUsername(sender, target);
         if (player == null)
         {
-            ChatOutputHandler.chatError(sender, Translator.format("Unable to find player: %1$s.", target));
+            ChatOutputHandler.chatError(sender, Translator.format("Impossible de trouver le joueur %1$s.", target));
             return;
         }
         setGameMode(sender, player, mode);
@@ -135,7 +135,7 @@ public class CommandGameMode extends ForgeEssentialsCommandBase
         target.setGameType(mode);
         target.fallDistance = 0.0F;
         String modeName = StatCollector.translateToLocal("gameMode." + mode.getName());
-        ChatOutputHandler.chatNotification(sender, Translator.format("%1$s's gamemode was changed to %2$s.", target.getCommandSenderName(), modeName));
+        ChatOutputHandler.chatNotification(sender, Translator.format("Mode de jeu %2$s pour %1$s.", target.getCommandSenderName(), modeName));
     }
 
     private WorldSettings.GameType getGameTypeFromString(String string)
@@ -195,11 +195,11 @@ public class CommandGameMode extends ForgeEssentialsCommandBase
     {
         if (sender instanceof EntityPlayer)
         {
-            return "/gamemode [gamemode] [player(s)] Change a player's gamemode.";
+            return "/gamemode [gamemode] [joueur(s)] Change le mode de jeu d'un joueur";
         }
         else
         {
-            return "/gamemode [gamemode] <player(s)> Change a player's gamemode.";
+            return "/gamemode [gamemode] <joueur(s)> Change le mode de jeu d'un joueur";
         }
     }
 

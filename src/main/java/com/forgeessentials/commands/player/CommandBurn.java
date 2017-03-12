@@ -37,11 +37,11 @@ public class CommandBurn extends ForgeEssentialsCommandBase
     {
         if (sender instanceof EntityPlayer)
         {
-            return "/burn <me|player> Set a player on fire.";
+            return "/burn <me|joueur> Met un joueur en feu.";
         }
         else
         {
-            return "/burn <player> Set a player on fire.";
+            return "/burn <joueur> Met un joueur en feu.";
         }
     }
 
@@ -71,18 +71,18 @@ public class CommandBurn extends ForgeEssentialsCommandBase
             if (args[0].toLowerCase().equals("me"))
             {
                 sender.setFire(15);
-                ChatOutputHandler.chatError(sender, "Ouch! Hot!");
+                ChatOutputHandler.chatError(sender, "A\u00EFe ! C'est chaud !");
             }
             else if (PermissionManager.checkPermission(sender, getPermissionNode() + ".others"))
             {
                 EntityPlayerMP player = UserIdent.getPlayerByMatchOrUsername(sender, args[0]);
                 if (player != null)
                 {
-                    ChatOutputHandler.chatConfirmation(sender, "You should feel bad about doing that.");
+                    ChatOutputHandler.chatConfirmation(sender, "Vous devriez vous sentir coupable d'avoir fait ça...");
                     player.setFire(15);
                 }
                 else
-                    throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+                    throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
             }
         }
         else if (args.length == 2)
@@ -90,7 +90,7 @@ public class CommandBurn extends ForgeEssentialsCommandBase
             if (args[0].toLowerCase().equals("me"))
             {
                 sender.setFire(parseInt(sender, args[1]));
-                ChatOutputHandler.chatError(sender, "Ouch! Hot!");
+                ChatOutputHandler.chatError(sender, "A\u00EFe ! C'est chaud !");
             }
             else if (PermissionManager.checkPermission(sender, getPermissionNode() + ".others"))
             {
@@ -98,10 +98,10 @@ public class CommandBurn extends ForgeEssentialsCommandBase
                 if (player != null)
                 {
                     player.setFire(parseIntWithMin(sender, args[1], 0));
-                    ChatOutputHandler.chatConfirmation(sender, "You should feel bad about doing that.");
+                    ChatOutputHandler.chatConfirmation(sender, "Vous devriez vous sentir coupable d'avoir fait ça...");
                 }
                 else
-                    throw new TranslatedCommandException("Player %s does not exist, or is not online.", args[0]);
+                    throw new TranslatedCommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
             }
         }
         else
@@ -122,10 +122,10 @@ public class CommandBurn extends ForgeEssentialsCommandBase
         if (player != null)
         {
             player.setFire(time);
-            ChatOutputHandler.chatConfirmation(sender, "You should feel bad about doing that.");
+            ChatOutputHandler.chatConfirmation(sender, "Vous devriez vous sentir coupable d'avoir fait ça...");
         }
         else
-            throw new CommandException("Player %s does not exist, or is not online.", args[0]);
+            throw new CommandException("Le joueur %s n'existe pas ou n'est pas en ligne.", args[0]);
     }
 
     @Override

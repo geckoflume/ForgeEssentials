@@ -40,7 +40,7 @@ public class CommandDrop extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender par1ICommandSender)
     {
-        return "/drop <X> <Y> <Z> <ItemID> <Meta> <Qty>";
+        return "/drop <X> <Y> <Z> <ItemID> <Meta> <Qt\u00E9>";
     }
 
     @Override
@@ -207,13 +207,13 @@ public class CommandDrop extends ForgeEssentialsCommandBase
         }
         else
         {
-            throw new TranslatedCommandException("No viable container found to put item in.");
+            throw new TranslatedCommandException("Aucun conteneur valide trouv\u00E9 pour y mettre l'item.");
         }
         if (var9 > 0)
         {
-            throw new TranslatedCommandException("Not enough room for items.");
+            throw new TranslatedCommandException("Pas assez de place pour ces items.");
         }
-        ChatOutputHandler.chatConfirmation(sender, "Items dropped into container.");
+        ChatOutputHandler.chatConfirmation(sender, "Items d\u00E9pos\u00E9s dans le conteneur.");
     }
 
     private double func_82368_a(ICommandSender par1ICommandSender, double par2, String par4Str)

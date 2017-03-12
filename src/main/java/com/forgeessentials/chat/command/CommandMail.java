@@ -27,7 +27,7 @@ public class CommandMail extends ParserCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/mail send|read: Send or read mails";
+        return "/mail send|read: Envoyer ou recevoir des courriers";
     }
 
     @Override
@@ -53,9 +53,9 @@ public class CommandMail extends ParserCommandBase
     {
         if (arguments.isEmpty())
         {
-            arguments.confirm("/mail read: Read next mail");
-            arguments.confirm("/mail readall: Read all mails");
-            arguments.confirm("/mail send <player> <msg...>: Send a mail");
+            arguments.confirm("/mail read: Lire le prochain courrier");
+            arguments.confirm("/mail readall: Lire tous les courriers");
+            arguments.confirm("/mail send <joueur> <msg...>: Envoyer un courrier");
             return;
         }
 
@@ -71,7 +71,7 @@ public class CommandMail extends ParserCommandBase
                 return;
             Mails mailBag = Mailer.getMailBag(arguments.ident);
             if (mailBag.mails.isEmpty())
-                throw new TranslatedCommandException("You have no mails to read");
+                throw new TranslatedCommandException("Vous n'avez pas de courrier");
             readMail(arguments.sender, mailBag.mails.remove(0));
             Mailer.saveMails(arguments.ident, mailBag);
             break;
@@ -84,7 +84,7 @@ public class CommandMail extends ParserCommandBase
                 return;
             Mails mailBag = Mailer.getMailBag(arguments.ident);
             if (mailBag.mails.isEmpty())
-                throw new TranslatedCommandException("You have no mails to read");
+                throw new TranslatedCommandException("Vous n'avez pas de courrier");
             for (Mail mail : mailBag.mails)
                 readMail(arguments.sender, mail);
             mailBag.mails.clear();
@@ -97,9 +97,9 @@ public class CommandMail extends ParserCommandBase
             if (arguments.isTabCompletion)
                 return;
             if (arguments.isEmpty())
-                throw new TranslatedCommandException("No message specified");
+                throw new TranslatedCommandException("Pas de message sp\u00E9cifi\u00E9");
             Mailer.sendMail(arguments.ident, receiver, arguments.toString());
-            arguments.confirm("You sent a mail to %s", receiver.getUsernameOrUuid());
+            arguments.confirm("Vous avez envoy\u00E9 un courrier \u00E0 %s", receiver.getUsernameOrUuid());
             break;
         }
         default:
@@ -110,7 +110,7 @@ public class CommandMail extends ParserCommandBase
     public static void readMail(ICommandSender sender, Mail mail)
     {
         ChatOutputHandler.chatNotification(sender,
-                Translator.format("Mail from %s on the %s", mail.sender.getUsernameOrUuid(), FEConfig.FORMAT_DATE_TIME.format(mail.timestamp)));
+                Translator.format("Courrier de %s le %s", mail.sender.getUsernameOrUuid(), FEConfig.FORMAT_DATE_TIME.format(mail.timestamp)));
         ChatOutputHandler.chatConfirmation(sender, ChatOutputHandler.formatColors(mail.message));
     }
 

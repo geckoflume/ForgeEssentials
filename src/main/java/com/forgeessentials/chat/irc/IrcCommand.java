@@ -41,7 +41,7 @@ public interface IrcCommand
             public void error(String message, Object... args)
             {
                 if (!isTabCompletion)
-                    ChatOutputHandler.chatError(sender, "Error: " + Translator.format(message, args));
+                    ChatOutputHandler.chatError(sender, "Erreur : " + Translator.format(message, args));
             }
 
         }

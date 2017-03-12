@@ -27,7 +27,7 @@ public class CommandCraft extends ForgeEssentialsCommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/craft Open a crafting window.";
+        return "/craft Ouvre une fen\u00EAtre de craft";
     }
 
     @Override

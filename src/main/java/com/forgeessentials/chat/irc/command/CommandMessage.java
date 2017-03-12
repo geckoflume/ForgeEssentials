@@ -23,13 +23,13 @@ public class CommandMessage extends IrcCommandParser
     @Override
     public String getCommandUsage()
     {
-        return "<player> <message...>";
+        return "<joueur> <message...>";
     }
 
     @Override
     public String getCommandHelp()
     {
-        return "Send a private message to a player";
+        return "Envoie un message priv\u00E9 \u00E0 un joueur";
     }
 
     @Override
@@ -43,7 +43,7 @@ public class CommandMessage extends IrcCommandParser
     {
         if (arguments.isEmpty())
         {
-            arguments.error("No player specified!");
+            arguments.error("Aucun joueur sp\u00E9cifi\u00E9 !");
             return;
         }
 
@@ -51,7 +51,7 @@ public class CommandMessage extends IrcCommandParser
         
         if (arguments.isEmpty())
         {
-            arguments.error("No message specified");
+            arguments.error("Aucun message sp\u00E9cifi\u00E9 !");
             return;
         }
 

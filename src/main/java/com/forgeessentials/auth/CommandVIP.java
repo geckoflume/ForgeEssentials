@@ -45,7 +45,7 @@ public class CommandVIP extends ForgeEssentialsCommandBase
     public String getCommandUsage(ICommandSender sender)
     {
 
-        return "/vip [add|remove} <player> Adds or removes a player from the VIP list";
+        return "/vip [add|remove} <joueur> Ajoute ou supprime un joueur de la liste VIP";
     }
 
     @Override
